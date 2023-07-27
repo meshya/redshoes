@@ -18,20 +18,21 @@
 int main() {
 
     HideCursor(); // From cli.cpp
-    clearScreen();
+    clearScreen(); // From cli.cpp
 
 
-    base_rules_make_sure();
+    BaseRulesMakeSure(); // From iptables.cpp
 
     FrontEndStartUp(); // From redshoes.cpp
 
-    event::handle();
+    event::handle(); // From event.cpp
+    /* It's main event loop */
 
-    std::cout << "\e[?25h"; // restore cursor
-    
+    systemOff(); // from six line laters :)
+
     return 0;
 }
 
 void systemOff (){
-    
+    ShowCursor(); // from cli.cpp    
 }

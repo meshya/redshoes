@@ -74,7 +74,7 @@ int remove_base_rules(){
     return 0;
 }
 
-int base_rules_make_sure(){
+int BaseRulesMakeSure(){
     if (isChainExists(REDSOCKS_CHAIN_NAME) or isChainExists(REDSHOES_CHAIN_NAME)){
         if (remove_base_rules()!=0){
             return 1;
