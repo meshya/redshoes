@@ -19,6 +19,6 @@ extern LogZone* main_log;
 extern Form* keyboard_focus;
 void focus_on_form(Form* the_form);
 
-//int startUp();
+int FrontEndStartUp();
 
 #endif

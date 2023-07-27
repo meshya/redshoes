@@ -22,13 +22,8 @@ int main() {
 
 
     base_rules_make_sure();
-    (*main_form).push(redsocks_stat_FO);
-    (*main_form).push(iptables_stat_FO);
-    (*main_form).push(redsocks_button_FO);
-    (*main_form).push(redsocks_configure_FO);
-    (*main_form).push(message_bar_FO);
-    (*main_form).show();
-    focus_on_form(main_form);
+
+    FrontEndStartUp(); // from redshoes.cpp
 
     event::handle();
 

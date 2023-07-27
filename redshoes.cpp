@@ -99,13 +99,28 @@ std::string iptables_stat_body(){
     result += "  ";
     return result;
 }
-//int startUp(){
+
 Form* main_form = new Form(0,0,&size_width,10);
 LogZone* main_log = new LogZone(&inter_page_dyn_sizeX,0,&size_width,&size_height);
+key_handler keyHandlerObject(&keyHandler);
+
+
 FormObject* redsocks_stat_FO = new FormObject(&redsocks_status_header,true,"left",0);
 FormObject* redsocks_button_FO = new FormObject(&redsocks_button,&redsocks_button_click,false,"left",1);
 FormObject* message_bar_FO = new FormObject(&message_bar,true,"left",5);
 FormObject* redsocks_configure_FO = new FormObject("Configure",&redsocks_configure_click,false,"left",1);
 FormObject* iptables_stat_FO = new FormObject(&iptables_stat_body,true,"left",0);
-key_handler keyHandlerObject(&keyHandler);
-//}
+
+
+int FrontEndStartUp(){
+
+    (*main_form).push(redsocks_stat_FO);
+    (*main_form).push(iptables_stat_FO);
+    (*main_form).push(redsocks_button_FO);
+    (*main_form).push(redsocks_configure_FO);
+    (*main_form).push(message_bar_FO);
+    (*main_form).show();
+    focus_on_form(main_form);
+    return 0;
+
+}
