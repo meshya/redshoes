@@ -1,3 +1,6 @@
+# It is a confession: mohali copied this makefile from redsocks 
+
+
 -include make.conf
 OBJS := cli.o event.o form.o keyboard.o main.o redshoes.o redsocks.o editor.o iptables.o configs.o terminal.o replace.o templates.o
 ifeq ($(DBG_BUILD),1)
@@ -9,7 +12,7 @@ DEPS := .depend
 OUT := debug
 VERSION := 0.5
 
-CC := clang++
+CC := clang
 CXX := clang++
 CXXFLAGS := -g -std=c++20 -fdiagnostics-color=always
 CFLAGS := -g -std=c++20 -fdiagnostics-color=always
@@ -96,7 +99,7 @@ $(DEPS): $(SRCS)
 -include $(DEPS)
 
 $(OUT): $(OBJS)
-	$(CC) $(CFLAGS)   -o $@ $^ $(LDFLAGS) $(LIBS)
+	$(CXX) $(CFLAGS)   -o $@ $^ $(LDFLAGS) $(LIBS)
 
 clean:
 	$(RM) $(OUT) $(CONF) $(OBJS)
