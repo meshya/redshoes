@@ -208,3 +208,10 @@ void dot_progress_letter::_lap(){
     }
     *letter = lap_str_calc();
 }
+
+void HideCursor(){
+    std::cout << "\e[?25l";
+}
+void ShowCursor(){
+    std::cout << "\e[?25h";
+}

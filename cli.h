@@ -71,4 +71,7 @@ class dot_progress_letter : public base_progress_letter{
         std::string lap_str_calc ();
 };
 
+void HideCursor();
+void ShowCursor();
+
 #endif

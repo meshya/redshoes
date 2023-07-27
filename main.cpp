@@ -17,17 +17,21 @@
 
 int main() {
 
-    std::cout << "\e[?25l"; // Hide cursor
+    HideCursor(); // From cli.cpp
     clearScreen();
 
 
     base_rules_make_sure();
 
-    FrontEndStartUp(); // from redshoes.cpp
+    FrontEndStartUp(); // From redshoes.cpp
 
     event::handle();
 
     std::cout << "\e[?25h"; // restore cursor
     
     return 0;
+}
+
+void systemOff (){
+    
 }
