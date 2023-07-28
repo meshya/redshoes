@@ -203,7 +203,7 @@ std::string dot_progress_letter::lap_str_calc(){
 
 void dot_progress_letter::_lap(){
     status++;
-    if (status >= len){
+    if (status > len){
         status = 0;
     }
     *letter = lap_str_calc();

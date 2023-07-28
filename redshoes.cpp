@@ -31,7 +31,7 @@ slash_progress_letter redsocks_anim(200);
 std::string redsocks_status_header (){
     std::string body = "";
     body += "Redsocks";
-    if (not status_redsocks){
+    if (not redsocks_status){
         body += " is off ";
         redsocks_anim.set(".");
 
@@ -40,7 +40,7 @@ std::string redsocks_status_header (){
         redsocks_anim.start();
     }
     body += *(redsocks_anim.letter);
-    if (not status_redsocks){
+    if (not redsocks_status){
         body += "    ";
     }
 
@@ -49,16 +49,19 @@ std::string redsocks_status_header (){
 
 std::string redsocks_button (){
     std::string body = "";
-    if (status_redsocks){
-        body += "Stop  ";
+    body += "Redsocks";
+
+    if (redsocks_status){
+        body = "Stop "  + body + "   ";
     }else{
-        body += "Start";
+        body = "Start " + body;
     }
+
     return body;
 }
 
 void redsocks_button_click (){
-    if (status_redsocks){
+    if (redsocks_status){
         stop_redsocks();
     }else{
         start_redsocks();
@@ -90,7 +93,7 @@ dot_progress_letter iptable_on_anim(500,5,"*"," ");
 dot_progress_letter iptable_off_anim(500,5," ","-");
 
 std::string iptables_stat_body(){
-    std::string result = "tunnel is ";
+    std::string result = "Tunnel is ";
     if ( tunnel_status ){
         result += "on <" + *(iptable_on_anim.letter) + ">";
     }else{
@@ -100,6 +103,29 @@ std::string iptables_stat_body(){
     return result;
 }
 
+
+std::string TunnelButtonTextRender (){
+    std::string body = "";
+    body += "Tunnel";
+
+    if (tunnel_status){
+        body = "Stop "  + body + "   ";
+    }else{
+        body = "Start " + body;
+    }
+
+    return body;
+}
+
+void TunnelButtonClick (){
+    if (tunnel_status){
+        tunnel_off();
+    }else{
+        tunnel_on();
+    }
+}
+
+
 Form* main_form = new Form(0,0,&size_width,10);
 LogZone* main_log = new LogZone(&inter_page_dyn_sizeX,0,&size_width,&size_height);
 key_handler keyHandlerObject(&keyHandler);
@@ -108,7 +134,7 @@ key_handler keyHandlerObject(&keyHandler);
 FormObject* redsocks_stat_FO = new FormObject(&redsocks_status_header,true,"left",0);
 FormObject* redsocks_button_FO = new FormObject(&redsocks_button,&redsocks_button_click,false,"left",1);
 FormObject* message_bar_FO = new FormObject(&message_bar,true,"left",5);
-FormObject* redsocks_configure_FO = new FormObject("Configure",&redsocks_configure_click,false,"left",1);
+FormObject* redsocks_configure_FO = new FormObject("Configure Redsocks",&redsocks_configure_click,false,"left",1);
 FormObject* iptables_stat_FO = new FormObject(&iptables_stat_body,true,"left",0);
 
 
@@ -116,9 +142,10 @@ int FrontEndStartUp(){
 
     (*main_form).push(redsocks_stat_FO);
     (*main_form).push(iptables_stat_FO);
+    (*main_form).push(new FormObject(&TunnelButtonTextRender,&TunnelButtonClick,false,"left",1));
     (*main_form).push(redsocks_button_FO);
     (*main_form).push(redsocks_configure_FO);
-    (*main_form).push(message_bar_FO);
+    //(*main_form).push(message_bar_FO);
     (*main_form).show();
     focus_on_form(main_form);
     return 0;

@@ -282,7 +282,7 @@ void base_page::hide(){
     this->page_event->stop();
 }
 
-void Form::Down(){
+void Form::Up(){
     focus = focus - 1;
     if (focus < 1){
         focus = selectables();
@@ -290,7 +290,7 @@ void Form::Down(){
     focused_cache=nullptr;
 }
 
-void Form::Up(){
+void Form::Down(){
     focus += 1;
     if (focus>selectables()){
         focus = 1;

@@ -94,13 +94,13 @@ int pid_redsocks(){
     }
 }
 
-bool status_redsocks = false;
+bool redsocks_status = false;
 
 void set_status(){
     if (pid_redsocks()==0){
-        status_redsocks = false;
+        redsocks_status = false;
     } else {
-        status_redsocks = true;
+        redsocks_status = true;
     }
 }
 

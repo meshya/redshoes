@@ -9,7 +9,7 @@ extern std::string REDSOCKS_CONFIG_FILE_PATH;
 
 int pid_redsocks();
 
-extern bool status_redsocks;
+extern bool redsocks_status;
 
 void set_status ();
 
