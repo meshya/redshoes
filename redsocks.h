@@ -4,7 +4,7 @@
 
 extern std::string REDSOCKS_BIN_FILE_PATH;
 extern std::string REDSOCKS_PID_FILE_PATH;
-extern std::string REDSOCKS_CONFIG_FILE_PATH;
+extern std::string REDSOCKS_CONFIG_RENDERED_PATH;
 
 
 int pid_redsocks();

@@ -6,7 +6,8 @@
 extern std::string REDSOCKS_CHAIN_NAME;
 extern std::string REDSOCKS_BIN_FILE_PATH;
 extern std::string REDSOCKS_PID_FILE_PATH;
-extern std::string REDSOCKS_CONFIG_FILE_PATH;
+extern std::string REDSOCKS_CONFIG_RENDERED_PATH;
+extern std::string REDSOCKS_CONFIG_TEMPLATE_PATH;
 extern std::string BASE_RULES_TEMPLATE_PATH;
 extern std::string BASE_RULES_RENDERED_PATH;
 extern std::string REDSOCKS_PORT;

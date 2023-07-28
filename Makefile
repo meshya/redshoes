@@ -18,7 +18,6 @@ CXXFLAGS := -g -std=c++20 -fdiagnostics-color=always
 CFLAGS := -g -std=c++20 -fdiagnostics-color=always
 
 
-#LIBS := -g
 ifeq ($(DBG_BUILD),1)
 # -levent_extra is required only for `http` and `debug`
 #LIBS += -levent_extra

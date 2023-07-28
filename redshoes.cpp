@@ -6,6 +6,8 @@
 #include "redsocks.h"
 #include "editor.h"
 #include "iptables.h"
+#include "main.h"
+#include "configs.h"
 
 //Form* Form::Showing;
 
@@ -83,9 +85,9 @@ int inter_page_dyn_sizeX(){
 }
 
 void redsocks_configure_click(){
-    system_sleep = true;
-    run_vim(REDSOCKS_CONFIG_FILE_PATH);
-    system_sleep = false;
+    system_sleep_status = true;
+    run_vim(REDSOCKS_CONFIG_TEMPLATE_PATH);
+    system_sleep_status = false;
 }
 
 dot_progress_letter iptable_on_anim(500,5,"*"," ");
@@ -125,6 +127,9 @@ void TunnelButtonClick (){
     }
 }
 
+void ExitButton(){
+    fail += 1;
+}
 
 Form* main_form = new Form(0,0,&size_width,10);
 LogZone* main_log = new LogZone(&inter_page_dyn_sizeX,0,&size_width,&size_height);
@@ -145,6 +150,7 @@ int FrontEndStartUp(){
     (*main_form).push(new FormObject(&TunnelButtonTextRender,&TunnelButtonClick,false,"left",1));
     (*main_form).push(redsocks_button_FO);
     (*main_form).push(redsocks_configure_FO);
+    (*main_form).push(new FormObject("Exit",&ExitButton,false,"left",0));
     //(*main_form).push(message_bar_FO);
     (*main_form).show();
     focus_on_form(main_form);

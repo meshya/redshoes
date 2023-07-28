@@ -4,7 +4,9 @@
 #include <stack>
 #include <list>
 
-extern bool system_sleep;
+extern bool system_sleep_status;
+void sleep_system();
+void awaik_system();
 
 typedef void(*event_func)();
 

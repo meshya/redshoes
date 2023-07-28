@@ -3,6 +3,7 @@
 #include "cli.h"
 #include "redshoes.h"
 #include "configs.h"
+#include "terminal.h"
 #include <sys/wait.h>
 #include <sys/types.h>
 #include <iostream>
@@ -42,10 +43,9 @@ bool isProcessRunning(pid_t pid) {
 int start_redsocks(){
     std::string command = "";
     command += REDSOCKS_BIN_FILE_PATH;
-    command += " -c " + REDSOCKS_CONFIG_FILE_PATH;
+    command += " -c {conf_file}";
     command += " -p " + REDSOCKS_PID_FILE_PATH;
-    ////std::cout << command.c_str() << std::endl ;
-    FILE* pipe = popen(command.c_str(), "r");
+    run_task_with_template_handle(command ,REDSOCKS_CONFIG_TEMPLATE_PATH ,REDSOCKS_CONFIG_RENDERED_PATH);
     set_status();
     return 0;
 }

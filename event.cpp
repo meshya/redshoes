@@ -1,10 +1,17 @@
-
 #include <iostream>
 #include <chrono>
 #include <thread>
 #include "event.h"
+#include "main.h"
 
-bool system_sleep = false ;
+bool system_sleep_status = false ;
+
+void sleep_system(){
+    system_sleep_status = true;
+}
+void awaik_system(){
+    system_sleep_status = false;
+}
 
 void sleep (int milisecounds){
     std::this_thread::sleep_for(std::chrono::milliseconds(milisecounds));
@@ -65,7 +72,10 @@ void event::stop(){
 void event::handle() {
 
     while(1){
-        if (!system_sleep){
+        if (fail!=0){
+            break;
+        }
+        if (!system_sleep_status){
             for (event* e : event::events){
 
                 if (e->between() > e->delay){ 

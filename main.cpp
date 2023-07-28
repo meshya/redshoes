@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unistd.h>
 #include "event.h"
 #include "cli.h"
 #include "keyboard.h"
@@ -7,29 +8,50 @@
 #include "iptables.h"
 #include "main.h"
 
+int fail = 0;
+
 int main() {
+
+    int result =  InterSuperUser();
+    if (result){
+        print("Please run me with sudo, I can't work corrcetly without it :)");
+        return 1;
+    }
 
     HideCursor(); // From cli.cpp
     clearScreen(); // From cli.cpp
 
+    if (fail == 0)
+    fail += BaseRulesMakeSure(); // From iptables.cpp
 
-    BaseRulesMakeSure(); // From iptables.cpp
-
-    FrontEndStartUp(); // From redshoes.cpp
-
+    if (fail == 0)
+    fail += FrontEndStartUp(); // From redshoes.cpp
+    
+    if (fail == 0)
     event::handle(); // From event.cpp
     /* It's event loop */
 
     systemOff(); // from some lines later :)
 
-    return 0;
+    return fail;
+}
+
+bool AmISuperUser(){
+    return getuid() == 0 ;
 }
 
 int InterSuperUser(){
-    
+    if (getuid()!=0){
+        if (setuid(0)!=0){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 void systemOff (){
     ShowCursor(); // from cli.cpp
     /* We should be responsable for users' terminal's cursor :) */
+    clearScreen();
+    /* Think like japanes, clear everything bedore leave :) */
 }

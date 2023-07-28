@@ -7,7 +7,6 @@
 #include <string>
 #include "configs.h"
 #include "terminal.h"
-#include "templates.h"
 #include "event.h"
 #include "iptables.h"
 #include <sstream>
@@ -34,27 +33,7 @@ bool isChainExists(const std::string& chainName) {
 }
 
 int run_iptables_template_rule(std::string template_path, std::string main_path){
-
-    std::ifstream template_file ;
-    template_file.open(template_path.c_str());
-    std::string template_body = "";
-    std::stringstream buffer;
-    buffer << template_file.rdbuf();
-    template_body += buffer.str();
-    template_file.close();
-    selectore values;
-    values.push_back({"redsocks_chain_name",REDSOCKS_CHAIN_NAME});
-    values.push_back({"redsocks_port",REDSOCKS_PORT});
-    values.push_back({"redshoes_chain_name",REDSHOES_CHAIN_NAME});
-    std::ofstream main_file;
-    main_file.open(main_path);
-    main_file << render(template_body, values);
-    std::string command = "iptables-restore < " + main_path;
-    main_file.close();
-    if (call(command) == ""){
-        return 1;
-    }
-    return 0;
+    return run_task_with_template_handle("iptables-restore < {conf_file}",template_path, main_path);
 }
 
 int set_base_rules(){
@@ -68,7 +47,7 @@ int remove_base_rules(){
     std::string command3 = "iptables -F " + REDSHOES_CHAIN_NAME;
     std::string command4 = "iptables -X " + REDSHOES_CHAIN_NAME;
 
-    if ((call(command1)=="") or (call(command2)=="") or (call(command3)=="") or (call(command4)=="")){
+    if ((call(command1, true)=="") or (call(command2, true)=="") or (call(command3, true)=="") or (call(command4, true)=="")){
         return 1;
     }
     return 0;
@@ -87,7 +66,13 @@ int BaseRulesMakeSure(){
 }
 
 int tunnel_on (){
-    return run_iptables_template_rule(TUNNEL_ON_TEMPLATE_PATH,TUNNEL_ON_RENDERED_PATH);
+    int status =  run_iptables_template_rule(TUNNEL_ON_TEMPLATE_PATH,TUNNEL_ON_RENDERED_PATH);
+    if (status == 0){
+        tunnel_status = true;
+    }else{
+        tunnel_status = false;
+    }
+    return status;
 }
 
 

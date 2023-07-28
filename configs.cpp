@@ -26,7 +26,8 @@ std::string here() {
 
 std::string REDSOCKS_BIN_FILE_PATH=here()+"/bin/redsocks/redsocks";
 std::string REDSOCKS_PID_FILE_PATH=here()+"/bin/redsocks/pid";
-std::string REDSOCKS_CONFIG_FILE_PATH=here()+"/bin/redsocks/config.conf";
+std::string REDSOCKS_CONFIG_RENDERED_PATH=here()+"/bin/redsocks/config.conf";
+std::string REDSOCKS_CONFIG_TEMPLATE_PATH=here()+"/bin/redsocks/config_template.conf";
 std::string BASE_RULES_TEMPLATE_PATH=here()+"/bin/iptables/base_rules_template.conf";
 std::string BASE_RULES_RENDERED_PATH=here()+"/bin/iptables/base_rules.conf";
 std::string TUNNEL_ON_TEMPLATE_PATH=here()+"/bin/iptables/tunnel_on_template.conf";
