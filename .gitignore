@@ -1,0 +1,9 @@
+**/*.o
+**/.*
+**/*.conf
+!**/*template.conf
+tmp/*
+debug
+bin/redsocks/pid
+a.out
+!.gitignore
