@@ -9,7 +9,7 @@ endif
 SRCS := $(OBJS:.o=.c)
 CONF := config.h
 DEPS := .depend
-OUT := debug
+OUT := redshoes
 VERSION := 0.5
 
 CC := clang
