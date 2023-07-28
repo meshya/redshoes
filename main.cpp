@@ -5,7 +5,7 @@
 #include "form.h"
 #include "redshoes.h"
 #include "iptables.h"
-
+#include "main.h"
 
 int main() {
 
@@ -18,7 +18,7 @@ int main() {
     FrontEndStartUp(); // From redshoes.cpp
 
     event::handle(); // From event.cpp
-    /* It's main event loop */
+    /* It's event loop */
 
     systemOff(); // from some lines later :)
 
@@ -31,5 +31,5 @@ int InterSuperUser(){
 
 void systemOff (){
     ShowCursor(); // from cli.cpp
-    /* We should be responsable for users terminal's cursor :) */
+    /* We should be responsable for users' terminal's cursor :) */
 }
