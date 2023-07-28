@@ -6,14 +6,6 @@
 #include "redshoes.h"
 #include "iptables.h"
 
-//event e(EVENT,100);
-
-//std::string row2_H (){
-//    return "mohali "+ *(l.letter);
-//}
-
-
-
 
 int main() {
 
@@ -28,11 +20,16 @@ int main() {
     event::handle(); // From event.cpp
     /* It's main event loop */
 
-    systemOff(); // from six line laters :)
+    systemOff(); // from some lines later :)
 
     return 0;
 }
 
+int InterSuperUser(){
+    
+}
+
 void systemOff (){
-    ShowCursor(); // from cli.cpp    
+    ShowCursor(); // from cli.cpp
+    /* We should be responsable for users terminal's cursor :) */
 }
