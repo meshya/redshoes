@@ -7,6 +7,7 @@
 #include "form.h"
 #include "redshoes.h"
 #include "iptables.h"
+#include "redsocks.h"
 #include "main.h"
 
 int fail = 0;
@@ -62,7 +63,13 @@ int InterSuperUser(){
 
 void systemOff (){
     ShowCursor(); // from cli.cpp
-    /* We should be responsable for users' terminal's cursor :) */
+    // We should be responsable for users' terminal's cursor :)
     clearScreen();
-    /* Think like japanes, clear everything bedore leave :) */
+    // Think like japanes, clear everything bedore leave :) 
+    if (redsocks_status){
+        stop_redsocks();
+    }
+    if (tunnel_status){
+        tunnel_off();
+    }
 }
