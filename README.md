@@ -11,4 +11,4 @@ for build using gcc:
 
 # Installation
 dist files after build are these 
-`./redshoes ./bin/*
+`./redshoes ./bin/* `
