@@ -1,8 +1,8 @@
+redshoes
 **/*.o
 **/*.conf
 !**/*template.conf
 tmp/*
-./redshoes
 bin/redsocks/pid
 bin/Debug
 a.out
