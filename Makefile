@@ -142,3 +142,13 @@ install: all
 	@cp -r $(DIST_FILES) $(INSTALL_DIR)
 	@echo "Creating symlink from $(INSTALL_DIR)/$(OUT) to $(BIN_DIR)/$(OUT)"
 	@ln -sf $(INSTALL_DIR)/$(OUT)  $(BIN_DIR)/$(OUT)
+
+uninstall:
+	@if [ -d "$(INSTALL_DIR)" ]; then \
+		echo "Removing $(INSTALL_DIR)"; \
+		rm -rf "$(INSTALL_DIR)"; \
+	fi
+	if [ -L "$(BIN_DIR)/$(OUT)"]; then\
+		echo "Unlinking $(BIN_DIR)/$(OUT)"; \
+		rm -f "$(BIN_DIR)/$(OUT)"; \
+	fi
