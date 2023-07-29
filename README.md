@@ -19,7 +19,7 @@ Use make  \
 Use make again \
 `# make uninstall`\
 Or you can do it you self\
-`# rm -rf /opt/redshoes`
+`# rm -rf /opt/redshoes`\
 `# unlink /usr/bin/redshoes`
 
 # How to use ?
