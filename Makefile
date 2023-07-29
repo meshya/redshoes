@@ -14,8 +14,16 @@ VERSION := 0.5
 
 CC := clang
 CXX := clang++
-CXXFLAGS := -g -std=c++20 -fdiagnostics-color=always
-CFLAGS := -g -std=c++20 -fdiagnostics-color=always
+CXXFLAGS :=  -std=c++20 -fdiagnostics-color=always -Wall
+CFLAGS :=  -std=c++20 -fdiagnostics-color=always
+
+# mohali created this section himself with help of chatgpt :)
+
+ifeq ($(MAKECMDGOALS),debug)
+CXXFLAGS += -g
+endif
+
+debug: all
 
 
 ifeq ($(DBG_BUILD),1)
@@ -98,7 +106,7 @@ $(DEPS): $(SRCS)
 -include $(DEPS)
 
 $(OUT): $(OBJS)
-	$(CXX) $(CFLAGS)   -o $@ $^ $(LDFLAGS) $(LIBS)
+	$(CXX) $(CXXFLAGS)   -o $@ $^ $(LDFLAGS) $(LIBS)
 
 clean:
 	$(RM) $(OUT) $(CONF) $(OBJS)
