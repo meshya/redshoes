@@ -2,7 +2,7 @@
 **/*.conf
 !**/*template.conf
 tmp/*
-debug
+./redshoes
 bin/redsocks/pid
 bin/Debug
 a.out
