@@ -7,3 +7,4 @@ debug
 bin/redsocks/pid
 a.out
 !.gitignore
+!.vscode/task.json
