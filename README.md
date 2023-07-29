@@ -17,8 +17,8 @@ Use make  \
 
 # Unstallation
 Use make again \
-`# make uninstall`
-Or you can do it you self
+`# make uninstall`\
+Or you can do it you self\
 `# rm -rf /opt/redshoes`
 `# unlink /usr/bin/redshoes`
 
