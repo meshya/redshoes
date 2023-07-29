@@ -77,5 +77,12 @@ int tunnel_on (){
 
 
 int tunnel_off (){
-    return run_iptables_template_rule(TUNNEL_OFF_TEMPLATE_PATH,TUNNEL_OFF_RENDERED_PATH);
+    int status = run_iptables_template_rule(TUNNEL_OFF_TEMPLATE_PATH,TUNNEL_OFF_RENDERED_PATH);
+    if (status != 0){
+        tunnel_status = true;
+    }else{
+        tunnel_status = false;
+    }
+    return status;
+
 }

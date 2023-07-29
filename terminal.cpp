@@ -12,36 +12,24 @@
 #include <sstream>
 
 
-std::string call(std::string command ,bool superUser){
-    if (superUser){
-        if (!AmISuperUser()/* From main.cpp */){
-            command = "sudo -C 3 " + command;
-            clearScreen();
-            ShowCursor();
-            sleep_system();
-            system(command.c_str());
-            awaik_system();
-            HideCursor();
-            clearScreen();
-            return " ";
-        }
-    }
+std::string call(std::string command ,bool readOutput){
+    std::string output = " " ;
+    
     FILE* pipe = popen(command.c_str(), "r");
     if (!pipe) {
         return "";
     }
-    std::string output = " " ;
 
-    char buffer[128];
-    while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
-            output += buffer ;
+    if (readOutput){
+        char buffer[128];
+        while (fgets(buffer, sizeof(buffer), pipe) != nullptr) {
+                output += buffer ;
+        }
+        pclose(pipe);
     }
 
-    pclose(pipe);
 
     return output;
-
-
 }
 
 
@@ -65,7 +53,7 @@ int run_task_with_template_handle(std::string command ,std::string template_path
     commandHandleValues.push_back({"conf_file",main_path});
     command = render(command,commandHandleValues);
     main_file.close();
-    if (call(command, true) == ""){
+    if (call(command, false) == ""){
         return 1;
     }
     return 0;

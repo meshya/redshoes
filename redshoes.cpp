@@ -133,7 +133,6 @@ void ExitButton(){
 
 Form* main_form = new Form(0,0,&size_width,10);
 LogZone* main_log = new LogZone(&inter_page_dyn_sizeX,0,&size_width,&size_height);
-key_handler keyHandlerObject(&keyHandler);
 
 
 FormObject* redsocks_stat_FO = new FormObject(&redsocks_status_header,true,"left",0);
@@ -154,6 +153,8 @@ int FrontEndStartUp(){
     //(*main_form).push(message_bar_FO);
     (*main_form).show();
     focus_on_form(main_form);
+    key_handler* keyHandlerObject = new key_handler(&keyHandler);
+
     return 0;
 
 }

@@ -1,4 +1,5 @@
 #include <iostream>
+
 #include <unistd.h>
 #include "event.h"
 #include "cli.h"
@@ -12,10 +13,21 @@ int fail = 0;
 
 int main() {
 
-    int result =  InterSuperUser();
-    if (result){
+    int statusCode =  InterSuperUser();
+    if (statusCode){
         print("Please run me with sudo");
-        return 1;
+        Cwrite("Run application anyway [y/n] ? ") ;
+        std::string result;
+        while(1){
+            std::getline(std::cin,result);
+            if (result == "y" or result == "Y" ){
+                break;
+            }else if(result=="n" or result=="N"){
+                return 0;
+            }
+            result="";
+            Cwrite("unvalid result only use y or n : ");
+        }
     }
 
     HideCursor(); // From cli.cpp
@@ -39,7 +51,6 @@ int main() {
 bool AmISuperUser(){
     return getuid() == 0 ;
 }
-
 int InterSuperUser(){
     if (getuid()!=0){
         if (setuid(0)!=0){

@@ -1,6 +1,6 @@
 # It is a confession: mohali copied this makefile from redsocks 
 
-
+# 
 -include make.conf
 OBJS := cli.o event.o form.o keyboard.o main.o redshoes.o redsocks.o editor.o iptables.o configs.o terminal.o replace.o templates.o
 ifeq ($(DBG_BUILD),1)
@@ -14,7 +14,7 @@ VERSION := 0.5
 
 CC := clang
 CXX := clang++
-CXXFLAGS :=  -std=c++20 -fdiagnostics-color=always -Wall
+CXXFLAGS :=  -std=c++20 -fdiagnostics-color=always
 CFLAGS :=  -std=c++20 -fdiagnostics-color=always
 
 INSTALL_DIR := /opt/redshoes
