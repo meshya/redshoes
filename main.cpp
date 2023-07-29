@@ -14,7 +14,7 @@ int main() {
 
     int result =  InterSuperUser();
     if (result){
-        print("Please run me with sudo, I can't work corrcetly without it :)");
+        print("Please run me with sudo");
         return 1;
     }
 
