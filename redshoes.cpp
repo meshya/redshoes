@@ -96,6 +96,10 @@ void iptables_configure_click(){
     system_sleep_status = true;
     run_vim(BASE_RULES_TEMPLATE_PATH);
     BaseRulesMakeSure();
+    tunnel_off();
+    if (tunnel_status){
+        tunnel_on();
+    }
     system_sleep_status = false;
 }
 
