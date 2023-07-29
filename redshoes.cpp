@@ -91,6 +91,13 @@ void redsocks_configure_click(){
     system_sleep_status = false;
 }
 
+
+void iptables_configure_click(){
+    system_sleep_status = true;
+    run_vim(BASE_RULES_TEMPLATE_PATH);
+    system_sleep_status = false;
+}
+
 dot_progress_letter iptable_on_anim(500,5,"*"," ");
 
 dot_progress_letter iptable_off_anim(500,5," ","-");
@@ -136,27 +143,24 @@ void killallRedsocks(){
     call("killall redsocks",false);
 }
 
-Form* main_form = new Form(0,0,&size_width,10);
+Form* main_form = new Form(0,0,&size_width,14);
 LogZone* main_log = new LogZone(&inter_page_dyn_sizeX,0,&size_width,&size_height);
 
 
-FormObject* redsocks_stat_FO = new FormObject(&redsocks_status_header,true,"left",0);
-FormObject* redsocks_button_FO = new FormObject(&redsocks_button,&redsocks_button_click,false,"left",1);
 FormObject* message_bar_FO = new FormObject(&message_bar,true,"left",5);
-FormObject* redsocks_configure_FO = new FormObject("Configure Redsocks",&redsocks_configure_click,false,"left",1);
-FormObject* iptables_stat_FO = new FormObject(&iptables_stat_body,true,"left",0);
 
 
 int FrontEndStartUp(){
 
-    main_form->push(redsocks_stat_FO);
-    main_form->push(iptables_stat_FO);
+    main_form->push(new FormObject(&redsocks_status_header,true,"left",0));
+    main_form->push(new FormObject(&iptables_stat_body,true,"left",0));
     main_form->push(new FormObject(&TunnelButtonTextRender,&TunnelButtonClick,false,"left",1));
-    main_form->push(redsocks_button_FO);
-    main_form->push(redsocks_configure_FO);
+    main_form->push(new FormObject(&redsocks_button,&redsocks_button_click,false,"left",1));
+    main_form->push(new FormObject("Configure Redsocks",&redsocks_configure_click,false,"left",1));
     main_form->push(new FormObject("Kill all Redsocks",&killallRedsocks,false,"left",1));
-    //main_form->push(new FormObject("configure",&ExitButton,false,"left",0));
+    main_form->push(new FormObject("Configure iptables",&iptables_configure_click,false,"left",0));
     main_form->push(new FormObject("Exit",&ExitButton,false,"left",0));
+    main_form->push(message_bar_FO);
     main_form->show();
     focus_on_form(main_form);
     key_handler* keyHandlerObject = new key_handler(&keyHandler);
