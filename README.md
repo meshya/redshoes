@@ -7,7 +7,7 @@ Redshoes is a CLI application which help you control redsocks and rediredt your 
 for build use make \
 `make` \
 for build using gcc: \
-`make CXX=g++` \
+`make CXX=g++` 
 
 # Installation
 dist files after build are these  \
