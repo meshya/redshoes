@@ -17,13 +17,16 @@ CXX := clang++
 CXXFLAGS :=  -std=c++20 -fdiagnostics-color=always -Wall
 CFLAGS :=  -std=c++20 -fdiagnostics-color=always
 
+INSTALL_DIR := /opt/redshoes
+DIST_FILES := $(OUT) bin
+BIN_DIR := /usr/bin
+
 # mohali created this section himself with help of chatgpt :)
 
 ifeq ($(MAKECMDGOALS),debug)
 CXXFLAGS += -g
 endif
 
-debug: all
 
 
 ifeq ($(DBG_BUILD),1)
@@ -34,6 +37,10 @@ endif
 #override CFLAGS +=  -D_DEFAULT_SOURCE -D_GNU_SOURCE -Wall
 
 all: $(OUT)
+
+
+debug: all
+
 
 .PHONY: all clean distclean test
 
@@ -124,3 +131,14 @@ tests/prlimit-nofile: tests/prlimit-nofile.c
 
 test: tests/__build-tstamp__ tests/prlimit-nofile
 	cd tests && env $(TEST_ENV) ./run
+
+install: all
+	@if [ -d "$(INSTALL_DIR)" ]; then \
+		echo "Removing $(INSTALL_DIR)"; \
+		rm -rf "$(INSTALL_DIR)"; \
+	fi
+	@mkdir -p "$(INSTALL_DIR)"
+	@echo "Coping $(DIST_FILES) to $(INSTALL_DIR)"
+	@cp -r $(DIST_FILES) $(INSTALL_DIR)
+	@echo "Creating symlink from $(INSTALL_DIR)/$(OUT) to $(BIN_DIR)/$(OUT)"
+	@ln -sf $(INSTALL_DIR)/$(OUT)  $(BIN_DIR)/$(OUT)
