@@ -66,6 +66,9 @@ int BaseRulesMakeSure(){
 }
 
 int tunnel_on (){
+    if (BaseRulesMakeSure()==1){
+        return 1;
+    }
     int status =  run_iptables_template_rule(TUNNEL_ON_TEMPLATE_PATH,TUNNEL_ON_RENDERED_PATH);
     if (status == 0){
         tunnel_status = true;

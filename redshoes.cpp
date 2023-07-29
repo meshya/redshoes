@@ -8,6 +8,7 @@
 #include "iptables.h"
 #include "main.h"
 #include "configs.h"
+#include "terminal.h"
 
 //Form* Form::Showing;
 
@@ -128,7 +129,11 @@ void TunnelButtonClick (){
 }
 
 void ExitButton(){
-    fail += 1;
+    fail += 1; // from main.cpp
+}
+
+void killallRedsocks(){
+    call("killall redsocks",false);
 }
 
 Form* main_form = new Form(0,0,&size_width,10);
@@ -144,14 +149,15 @@ FormObject* iptables_stat_FO = new FormObject(&iptables_stat_body,true,"left",0)
 
 int FrontEndStartUp(){
 
-    (*main_form).push(redsocks_stat_FO);
-    (*main_form).push(iptables_stat_FO);
-    (*main_form).push(new FormObject(&TunnelButtonTextRender,&TunnelButtonClick,false,"left",1));
-    (*main_form).push(redsocks_button_FO);
-    (*main_form).push(redsocks_configure_FO);
-    (*main_form).push(new FormObject("Exit",&ExitButton,false,"left",0));
-    //(*main_form).push(message_bar_FO);
-    (*main_form).show();
+    main_form->push(redsocks_stat_FO);
+    main_form->push(iptables_stat_FO);
+    main_form->push(new FormObject(&TunnelButtonTextRender,&TunnelButtonClick,false,"left",1));
+    main_form->push(redsocks_button_FO);
+    main_form->push(redsocks_configure_FO);
+    main_form->push(new FormObject("Kill all Redsocks",&killallRedsocks,false,"left",1));
+    //main_form->push(new FormObject("configure",&ExitButton,false,"left",0));
+    main_form->push(new FormObject("Exit",&ExitButton,false,"left",0));
+    main_form->show();
     focus_on_form(main_form);
     key_handler* keyHandlerObject = new key_handler(&keyHandler);
 
