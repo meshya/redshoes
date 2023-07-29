@@ -158,7 +158,7 @@ int FrontEndStartUp(){
     main_form->push(new FormObject(&redsocks_button,&redsocks_button_click,false,"left",1));
     main_form->push(new FormObject("Configure Redsocks",&redsocks_configure_click,false,"left",1));
     main_form->push(new FormObject("Kill all Redsocks",&killallRedsocks,false,"left",1));
-    main_form->push(new FormObject("Configure iptables",&iptables_configure_click,false,"left",0));
+    main_form->push(new FormObject("Configure iptables",&iptables_configure_click,false,"left",1));
     main_form->push(new FormObject("Exit",&ExitButton,false,"left",0));
     main_form->push(message_bar_FO);
     main_form->show();
