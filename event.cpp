@@ -85,7 +85,7 @@ void event::handle() {
                 }
             }
         }
-        sleep(100);
+        sleep(10);
     }
 }
 

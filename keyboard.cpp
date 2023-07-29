@@ -26,7 +26,7 @@ void key_handler::lap(){
 }
 
 void key_handler::start(){
-    this->key_event = new event(*this, 200);
+    this->key_event = new event(*this, 50);
 }
 
 key_handler::key_handler(void (*handler)(std::string key),bool _default){

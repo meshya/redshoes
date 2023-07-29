@@ -123,7 +123,7 @@ base_page::base_page (int startx, int starty, int (*endx)(), int endy){
 }
 
 void base_page::base_page2(){
-    this->page_event = new event(*this,100);
+    this->page_event = new event(*this,50);
     this->hide();
 }
 
@@ -335,7 +335,7 @@ std::string Form::render(){
             if (this->focused()==FO){
                 selector_space = "~> ";
             }else{
-                selector_space = "   ";
+                selector_space = "  ";
             }
         }else{
             selector_space = "";
