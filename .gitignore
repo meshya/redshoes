@@ -1,4 +1,3 @@
-!.vscode/tasks.json
 **/*.o
 **/*.conf
 !**/*template.conf
