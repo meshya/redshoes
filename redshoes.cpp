@@ -95,6 +95,7 @@ void redsocks_configure_click(){
 void iptables_configure_click(){
     system_sleep_status = true;
     run_vim(BASE_RULES_TEMPLATE_PATH);
+    BaseRulesMakeSure();
     system_sleep_status = false;
 }
 
