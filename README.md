@@ -1,6 +1,8 @@
-# redshoes
-## Force Redirect your OS data to a socks5 proxy
-
+# redshoes 
+Force Redirect your OS data to a socks5 proxy
+\
+\
+\
 Redshoes is a CLI application which help you control redsocks and rediredt your packets to redsocks using iptables.
 
 # Build
