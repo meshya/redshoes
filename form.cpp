@@ -57,13 +57,6 @@ std::string FormObject::handle(int width){
         _body = this->bodyHandle();
     }
     if (side == 0){
-
-        std::string _margin = "";
-        for (int i = 0;i<this->margin;i++){
-            _margin = " " + _margin ;
-        }
-
-        _body = _margin + _body;
         return _body;
     }
     return _body;
@@ -340,14 +333,21 @@ std::string Form::render(){
         FormObject* FO = dynamic_cast<FormObject*>(FO_p);
         if (!FO->solid){
             if (this->focused()==FO){
-                selector_space = "~>";
+                selector_space = "~> ";
             }else{
-                selector_space = "  ";
+                selector_space = "   ";
             }
         }else{
             selector_space = "";
         }
-        result += selector_space+FO->handle()+"\n";
+
+        std::string _margin = "";
+        for (int i = 0; i<FO->margin; i++){
+            _margin = " " + _margin ;
+        }
+
+
+        result += _margin + selector_space + FO->handle()+"\n";
     }
     return result;
 }
