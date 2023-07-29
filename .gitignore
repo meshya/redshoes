@@ -1,10 +1,14 @@
+!.vscode/tasks.json
 **/*.o
-**/.*
 **/*.conf
 !**/*template.conf
 tmp/*
 debug
 bin/redsocks/pid
+bin/Debug
 a.out
 !.gitignore
+.*
+!.vscode
+.vscode/*
 !.vscode/tasks.json
